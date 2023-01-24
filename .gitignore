@@ -2,6 +2,7 @@ node_modules
 .vscode
 tmp/avatar/*
 tmp/cars/*
+tmp/*.jpg
 !tmp/avatar/.gitkeep
 !tmp/cars/.gitkeep
 coverage
