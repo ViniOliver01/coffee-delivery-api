@@ -33,8 +33,6 @@ class RefreshTokenUseCase {
       user_id,
       token
     );
-    console.log(userToken);
-    console.log("user: ", user_id, "token: ", token);
 
     if (!userToken) {
       throw new AppError("Refresh token does not exists!");
