@@ -1,9 +1,9 @@
 import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
+import { AppError } from "../../../../shared/errors/AppError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
-import { AppError } from "./../../../../shared/errors/AppError";
 
 interface IRequest {
   token: string;

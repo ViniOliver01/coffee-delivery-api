@@ -3,9 +3,9 @@ import { inject, injectable } from "tsyringe";
 import { v4 as UUIDv4 } from "uuid";
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { IMailProvider } from "../../../../shared/container/providers/mailProvider/IMailProvider";
+import { AppError } from "../../../../shared/errors/AppError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
-import { AppError } from "./../../../../shared/errors/AppError";
 
 @injectable()
 class SendForgotPasswordMailUseCase {
