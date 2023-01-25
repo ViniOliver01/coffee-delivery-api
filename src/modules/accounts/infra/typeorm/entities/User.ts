@@ -14,6 +14,9 @@ class User {
   email: string;
 
   @Column()
+  email_is_verified: boolean;
+
+  @Column()
   password: string;
 
   @Column()
@@ -43,6 +46,7 @@ class User {
   constructor() {
     if (!this.id) {
       this.id = UUIDv4();
+      this.email_is_verified = false;
     }
   }
 }
