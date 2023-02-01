@@ -9,9 +9,12 @@ class UpdateUserAvatarController {
     const { id } = request.user;
     const avatar_file = request.file.filename;
 
-    await updateUserAvatarUseCase.execute({ user_id: id, avatar_file });
+    const avatar_url = await updateUserAvatarUseCase.execute({
+      user_id: id,
+      avatar_file,
+    });
 
-    return response.status(204).send();
+    return response.status(200).json({ avatar_url: avatar_url });
   }
 }
 

@@ -1,5 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 import { ICreateUserDTO } from "../../../dtos/ICreateUserDTO";
+import { IUpdateUserDTO } from "../../../dtos/IUpdateUserDTO";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { User } from "../entities/User";
 
@@ -10,12 +11,20 @@ class UsersRepository implements IUsersRepository {
     this.repository = getRepository(User);
   }
 
-  async create({ name, email, password, avatar, id }: ICreateUserDTO): Promise<User> {
+  async create({
+    name,
+    email,
+    password,
+    avatar,
+    phone,
+    id,
+  }: ICreateUserDTO): Promise<User> {
     const user = this.repository.create({
       name,
       email,
       password,
       avatar,
+      phone,
       id,
     });
 
@@ -44,6 +53,41 @@ class UsersRepository implements IUsersRepository {
 
     const user = await this.repository.findOne(id);
     return user;
+  }
+
+  async changePersonalDataByUserId({
+    id,
+    avatar,
+    email,
+    name,
+    phone,
+  }: IUpdateUserDTO): Promise<User> {
+    const user = await this.repository.findOne(id);
+
+    if (avatar) {
+      user.avatar = avatar;
+    }
+    if (email) {
+      user.email = email;
+    }
+    if (name) {
+      user.name = name;
+    }
+    if (phone) {
+      user.phone = phone;
+    }
+
+    const newUser = this.repository.create({
+      id,
+      name,
+      email,
+      avatar,
+      phone,
+    });
+
+    await this.repository.save(newUser);
+
+    return newUser;
   }
 }
 

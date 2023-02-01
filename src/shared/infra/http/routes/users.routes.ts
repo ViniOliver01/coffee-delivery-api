@@ -5,6 +5,7 @@ import { ConfirmMailController } from "../../../../modules/accounts/useCases/con
 import { CreateUserController } from "../../../../modules/accounts/useCases/createUser/createUser.controller";
 import { ProfileUserController } from "../../../../modules/accounts/useCases/profileUser/ProfileUser.Controller";
 import { UpdateUserAvatarController } from "../../../../modules/accounts/useCases/updateUserAvatar/UpdateUserAvatar.Controller";
+import { UpdateUserDataController } from "../../../../modules/accounts/useCases/updateUserData/UpdateUserData.Controller";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const usersRoutes = Router();
@@ -15,6 +16,7 @@ const createUserController = new CreateUserController();
 const updateUserAvatarController = new UpdateUserAvatarController();
 const profileUserController = new ProfileUserController();
 const confirmMailController = new ConfirmMailController();
+const updateUserDataController = new UpdateUserDataController();
 
 usersRoutes.post("/", createUserController.handle);
 
@@ -26,6 +28,8 @@ usersRoutes.patch(
   uploadAvatar.single("avatar"),
   updateUserAvatarController.handle
 );
+
+usersRoutes.patch("/update", ensureAuthenticated, updateUserDataController.handle);
 
 usersRoutes.get("/profile", ensureAuthenticated, profileUserController.handle);
 

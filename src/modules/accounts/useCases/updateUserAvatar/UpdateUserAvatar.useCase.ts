@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IStorageProvider } from "../../../../shared/container/providers/StorageProvider/IStorageProvider";
+import { UserMap } from "../../mapper/UserMap";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
@@ -16,7 +17,7 @@ class UpdateUserAvatarUseCase {
     private storageProvider: IStorageProvider
   ) {}
 
-  async execute({ user_id, avatar_file }: IRequest): Promise<void> {
+  async execute({ user_id, avatar_file }: IRequest): Promise<() => String> {
     const user = await this.usersRepository.findById(user_id);
 
     if (user.avatar) {
@@ -28,6 +29,10 @@ class UpdateUserAvatarUseCase {
     user.avatar = avatar_file;
 
     await this.usersRepository.create(user);
+
+    const newUser = UserMap.toDTO(user);
+
+    return newUser.avatar_url;
   }
 }
 
