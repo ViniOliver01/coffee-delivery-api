@@ -1,6 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 import uploadConfig from "../../../../config/upload";
+import { ChangePasswordUserController } from "../../../../modules/accounts/useCases/changePasswordUser/ChangePasswordUser.controller";
 import { ConfirmMailController } from "../../../../modules/accounts/useCases/confirmMail/ConfirmMail.Controller";
 import { CreateUserController } from "../../../../modules/accounts/useCases/createUser/createUser.controller";
 import { ProfileUserController } from "../../../../modules/accounts/useCases/profileUser/ProfileUser.Controller";
@@ -17,6 +18,7 @@ const updateUserAvatarController = new UpdateUserAvatarController();
 const profileUserController = new ProfileUserController();
 const confirmMailController = new ConfirmMailController();
 const updateUserDataController = new UpdateUserDataController();
+const changePasswordUserController = new ChangePasswordUserController();
 
 usersRoutes.post("/", createUserController.handle);
 
@@ -30,6 +32,8 @@ usersRoutes.patch(
 );
 
 usersRoutes.patch("/update", ensureAuthenticated, updateUserDataController.handle);
+
+usersRoutes.patch("/password", ensureAuthenticated, changePasswordUserController.handle);
 
 usersRoutes.get("/profile", ensureAuthenticated, profileUserController.handle);
 
