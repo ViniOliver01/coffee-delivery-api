@@ -11,6 +11,8 @@ import { CoffeesRepository } from "../../modules/coffees/infra/typeorm/repositor
 import { SpecificationsRepository } from "../../modules/coffees/infra/typeorm/repositories/SpecificationsRepository";
 import { ICoffeesRepository } from "../../modules/coffees/repositories/interfaces/ICoffeesRepository";
 import { ISpecificationsRepository } from "../../modules/coffees/repositories/interfaces/ISpecificationsRepository";
+import { PurchasesRepository } from "../../modules/purchases/infra/typeorm/repositories/PurchasesRepository";
+import { IPurchasesRepository } from "../../modules/purchases/repositories/interfaces/IPurchasesRepository";
 
 container.registerSingleton<IUsersRepository>("UsersRepository", UsersRepository);
 
@@ -25,3 +27,8 @@ container.registerSingleton<ISpecificationsRepository>(
 );
 
 container.registerSingleton<ICoffeesRepository>("CoffeesRepository", CoffeesRepository);
+
+container.registerSingleton<IPurchasesRepository>(
+  "PurchasesRepository",
+  PurchasesRepository
+);
