@@ -3,6 +3,7 @@ import { ICreateCoffeeDTO } from "../../../dtos/ICreateCoffeeDTO";
 import { ICoffeesRepository } from "../../../repositories/interfaces/ICoffeesRepository";
 import { Coffee } from "../entities/Coffee";
 import { Specification } from "../entities/Specification";
+import { AppError } from "./../../../../../shared/errors/AppError";
 
 class CoffeesRepository implements ICoffeesRepository {
   private repository: Repository<Coffee>;
@@ -19,6 +20,12 @@ class CoffeesRepository implements ICoffeesRepository {
     specifications,
     id,
   }: ICreateCoffeeDTO): Promise<Coffee> {
+    const isAlreadyExists = await this.repository.findOne({ name });
+
+    if (isAlreadyExists) {
+      throw new AppError("Coffee already exists");
+    }
+
     const coffee = this.repository.create({
       name,
       description,
