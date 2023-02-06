@@ -3,8 +3,10 @@ import "reflect-metadata";
 import "../container/providers"; // import from providers
 
 import { container } from "tsyringe";
+import { UsersAddressRepository } from "../../modules/accounts/infra/typeorm/repositories/UsersAddressRepository";
 import { UsersRepository } from "../../modules/accounts/infra/typeorm/repositories/UsersRepository";
 import { UsersTokensRepository } from "../../modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { IUsersAddressRepository } from "../../modules/accounts/repositories/IUsersAddressRepository";
 import { IUsersRepository } from "../../modules/accounts/repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../modules/accounts/repositories/IUsersTokensRepository";
 import { CoffeesRepository } from "../../modules/coffees/infra/typeorm/repositories/CoffeesRepository";
@@ -31,4 +33,9 @@ container.registerSingleton<ICoffeesRepository>("CoffeesRepository", CoffeesRepo
 container.registerSingleton<IPurchasesRepository>(
   "PurchasesRepository",
   PurchasesRepository
+);
+
+container.registerSingleton<IUsersAddressRepository>(
+  "UsersAddressRepository",
+  UsersAddressRepository
 );
