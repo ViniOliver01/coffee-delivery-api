@@ -22,7 +22,7 @@ class CoffeesRepository implements ICoffeesRepository {
   }: ICreateCoffeeDTO): Promise<Coffee> {
     const isAlreadyExists = await this.repository.findOne({ name });
 
-    if (isAlreadyExists) {
+    if (isAlreadyExists && !id) {
       throw new AppError("Coffee already exists");
     }
 
