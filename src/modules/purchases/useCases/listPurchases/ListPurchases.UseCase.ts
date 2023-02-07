@@ -13,7 +13,7 @@ class ListPurchasesUseCase {
   ) {}
 
   async execute(user_id: string): Promise<Purchase[]> {
-    const purchases = await this.purchasesRepository.listById(user_id);
+    const purchases = await this.purchasesRepository.listByUserId(user_id);
     console.log("🚀 / ListPurchasesUseCase / execute / purchases", purchases[0].cart);
 
     await Promise.all(

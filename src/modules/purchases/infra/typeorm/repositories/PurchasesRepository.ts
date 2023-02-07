@@ -35,9 +35,14 @@ class PurchasesRepository implements IPurchasesRepository {
 
     return purchase;
   }
-  async listById(user_id: string): Promise<Purchase[]> {
+  async listByUserId(user_id: string): Promise<Purchase[]> {
     const purchases = await this.repository.find({ user_id });
     return purchases;
+  }
+
+  async listByPurchaseId(purchase_id: string): Promise<Purchase> {
+    const purchase = await this.repository.findOne({ id: purchase_id });
+    return purchase;
   }
 }
 
