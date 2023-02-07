@@ -20,6 +20,10 @@ export class CreatePurchases1675278113772 implements MigrationInterface {
             type: "uuid",
           },
           {
+            name: "address_id",
+            type: "uuid",
+          },
+          {
             name: "cart",
             type: "jsonb",
           },
@@ -37,6 +41,10 @@ export class CreatePurchases1675278113772 implements MigrationInterface {
           },
           {
             name: "status",
+            type: "varchar",
+          },
+          {
+            name: "payment_type",
             type: "varchar",
           },
           {

@@ -5,7 +5,7 @@ import { CreatePurchaseUseCase } from "./CreatePurchase.UseCase";
 class CreatePurchaseController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id: user_id } = request.user;
-    const { cart, delivery_value, address_id } = request.body;
+    const { cart, delivery_value, address_id, payment_type } = request.body;
 
     const createPurchaseUseCase = container.resolve(CreatePurchaseUseCase);
 
@@ -13,6 +13,7 @@ class CreatePurchaseController {
       user_id,
       address_id,
       delivery_value,
+      payment_type,
       cart,
     });
 

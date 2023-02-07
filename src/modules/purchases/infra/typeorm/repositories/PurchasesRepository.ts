@@ -12,6 +12,7 @@ class PurchasesRepository implements IPurchasesRepository {
 
   async create({
     purchase_id,
+    address_id,
     created_at,
     status,
     user_id,
@@ -19,9 +20,11 @@ class PurchasesRepository implements IPurchasesRepository {
     delivery_value,
     products_value,
     total_value,
+    payment_type,
   }: ICreatePurchase): Promise<Purchase> {
     const purchase = this.repository.create({
       purchase_id,
+      address_id,
       user_id,
       cart,
       created_at,
@@ -29,6 +32,7 @@ class PurchasesRepository implements IPurchasesRepository {
       delivery_value,
       products_value,
       total_value,
+      payment_type,
     });
 
     await this.repository.save(purchase);

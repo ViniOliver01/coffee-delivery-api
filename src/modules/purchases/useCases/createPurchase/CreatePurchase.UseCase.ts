@@ -8,6 +8,7 @@ interface IRequest {
   user_id: string;
   address_id: string;
   delivery_value: number;
+  payment_type;
   cart: IPurchaseCart[];
 }
 
@@ -24,6 +25,7 @@ class CreatePurchaseUseCase {
     user_id,
     address_id,
     delivery_value,
+    payment_type,
     cart,
   }: IRequest): Promise<Purchase> {
     await Promise.all(
@@ -40,9 +42,11 @@ class CreatePurchaseUseCase {
 
     const purchase = await this.purchasesRepository.create({
       user_id,
+      address_id,
       delivery_value,
       products_value,
       total_value,
+      payment_type,
       cart,
     });
 

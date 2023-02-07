@@ -17,6 +17,9 @@ class Purchase {
   @Column()
   user_id: string;
 
+  @Column()
+  address_id: string;
+
   @Column("jsonb")
   cart: IPurchaseCart[];
 
@@ -31,6 +34,9 @@ class Purchase {
 
   @Column()
   status: string;
+
+  @Column()
+  payment_type: string;
 
   @CreateDateColumn()
   created_at: Date;
