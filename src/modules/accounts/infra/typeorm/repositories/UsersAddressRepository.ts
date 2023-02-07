@@ -45,6 +45,12 @@ class UsersAddressRepository implements IUsersAddressRepository {
 
     return addressList;
   }
+
+  async findByAddressId(id: string): Promise<UserAddress> {
+    const address = await this.repository.findOne(id);
+
+    return address;
+  }
 }
 
 export { UsersAddressRepository };
