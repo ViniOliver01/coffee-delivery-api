@@ -37,7 +37,7 @@ coffeeRoutes.patch(
   uploadCoffeeImageController.handle
 );
 
-coffeeRoutes.post("/specifications/:id", createCoffeeSpecificationController.handle);
+coffeeRoutes.post("/specifications", createCoffeeSpecificationController.handle);
 
 coffeeRoutes.get("/", listCoffeesController.handle);
 
