@@ -2,6 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 import uploadConfig from "../../../../config/upload";
 import { ChangePasswordUserController } from "../../../../modules/accounts/useCases/changePasswordUser/ChangePasswordUser.controller";
+import { CheckIsAdminController } from "../../../../modules/accounts/useCases/checkIsAdmin/CheckIsAdmin.Controller";
 import { ConfirmMailController } from "../../../../modules/accounts/useCases/confirmMail/ConfirmMail.Controller";
 import { CreateAddressUserController } from "../../../../modules/accounts/useCases/createAddressUser/CreateAddressUser.Controller";
 import { CreateUserController } from "../../../../modules/accounts/useCases/createUser/createUser.controller";
@@ -25,8 +26,10 @@ const changePasswordUserController = new ChangePasswordUserController();
 const createAddressUserController = new CreateAddressUserController();
 const listAddressUserController = new ListAddressUserController();
 const updatedAddressUserController = new UpdatedAddressUserController();
+const checkIsAdminController = new CheckIsAdminController();
 
 usersRoutes.post("/", createUserController.handle);
+usersRoutes.post("/isadmin", checkIsAdminController.handle);
 
 usersRoutes.get("/confirmation/:token", confirmMailController.handle);
 

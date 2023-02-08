@@ -8,6 +8,7 @@ interface IUsersRepository {
   findById(id: string): Promise<User>;
   verifyEmailByUserId(id: string): Promise<User>;
   changePersonalDataByUserId(data: IUpdateUserDTO): Promise<User>;
+  checkIsAdmin(email: string): Promise<boolean>;
 }
 
 export { IUsersRepository };

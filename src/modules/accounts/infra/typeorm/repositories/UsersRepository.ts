@@ -89,6 +89,13 @@ class UsersRepository implements IUsersRepository {
 
     return newUser;
   }
+  async checkIsAdmin(email: string): Promise<boolean> {
+    const user = await this.repository.findOne({ email, isAdmin: true });
+    if (user) {
+      return true;
+    }
+    return false;
+  }
 }
 
 export { UsersRepository };
