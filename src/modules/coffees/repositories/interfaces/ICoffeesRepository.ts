@@ -5,6 +5,7 @@ interface ICoffeesRepository {
   create(data: ICreateCoffeeDTO): Promise<Coffee>;
   findById(id: string): Promise<Coffee>;
   findByName(name: string): Promise<Coffee>;
+  listAllCoffees(): Promise<Coffee[]>;
   listAvailableCoffees(): Promise<Coffee[]>;
   updateAvailableCoffeesById(id: string, available: boolean): Promise<void>;
 }

@@ -61,6 +61,11 @@ class CoffeesRepository implements ICoffeesRepository {
 
     return coffees;
   }
+
+  async listAllCoffees(): Promise<Coffee[]> {
+    const coffees = await this.repository.find();
+    return coffees;
+  }
   async updateAvailableCoffeesById(id: string, available: boolean): Promise<void> {
     await this.repository
       .createQueryBuilder()
