@@ -7,6 +7,7 @@ interface ICreateCoffeeDTO {
   image?: string;
   specifications?: Specification[];
   id?: string;
+  available?: boolean;
 }
 
 export { ICreateCoffeeDTO };

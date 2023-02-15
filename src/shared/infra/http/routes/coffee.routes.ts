@@ -5,6 +5,7 @@ import { CreateCoffeeController } from "../../../../modules/coffees/useCases/cre
 import { CreateCoffeeSpecificationController } from "../../../../modules/coffees/useCases/createCoffeeSpecification/CreateCoffeeSpecification.Controller";
 import { ImportCoffeesController } from "../../../../modules/coffees/useCases/importCoffees/ImportCoffees.Controller";
 import { ListCoffeesController } from "../../../../modules/coffees/useCases/listCoffees/ListCoffees.Controller";
+import { UpdateCoffeeDataController } from "../../../../modules/coffees/useCases/UpdateCoffeeData/UpdateCoffeeData.Controller";
 import { UploadCoffeeImageController } from "../../../../modules/coffees/useCases/uploadCoffeeImage/UploadCoffeeImage.Controller";
 
 const coffeeRoutes = Router();
@@ -20,6 +21,7 @@ const createCoffeeSpecificationController = new CreateCoffeeSpecificationControl
 const listCoffeesController = new ListCoffeesController();
 const uploadCoffeeImageController = new UploadCoffeeImageController();
 const importCoffeesController = new ImportCoffeesController();
+const updateCoffeeDataController = new UpdateCoffeeDataController();
 
 coffeeRoutes.post("/", createCoffeeController.handle);
 
@@ -36,6 +38,8 @@ coffeeRoutes.patch(
   uploadAvatar.single("coffee"),
   uploadCoffeeImageController.handle
 );
+
+coffeeRoutes.patch("/update", updateCoffeeDataController.handle);
 
 coffeeRoutes.post("/specifications", createCoffeeSpecificationController.handle);
 

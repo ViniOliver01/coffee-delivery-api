@@ -19,6 +19,7 @@ class CoffeesRepository implements ICoffeesRepository {
     image,
     specifications,
     id,
+    available,
   }: ICreateCoffeeDTO): Promise<Coffee> {
     const isAlreadyExists = await this.repository.findOne({ name });
 
@@ -33,6 +34,7 @@ class CoffeesRepository implements ICoffeesRepository {
       image,
       specifications,
       id,
+      available,
     });
     await this.repository.save(coffee);
     return coffee;
