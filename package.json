@@ -5,11 +5,14 @@
   "author": "Vinicius de Oliveira Pinto <viniciusoliveira9699@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.ts",
-    "build": "rimraf dist && tsc",
+    "start": "vercel dev",
+    "deploy": "vercel deploy --prod",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
   },
   "dependencies": {
     "@sentry/node": "^7.31.1",
