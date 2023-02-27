@@ -32,7 +32,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           source: "., !node_modules"
-          target: "~/app/rentx-api"
+          target: "~/app/coffee-delivery-api"
       
       - name: Updated API
         uses: appleboy/ssh-action@v0.1.7
@@ -42,7 +42,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/app/rentx-api
+            cd ~/app/coffee-delivery-api
             yarn
             ./node_modules/.bin/typeorm migration:run
             pm2 restart rentx-api
