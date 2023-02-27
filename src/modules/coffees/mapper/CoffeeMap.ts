@@ -12,6 +12,7 @@ class CoffeeMap {
     image_url,
     price,
     specifications,
+    updated_at,
     created_at,
   }: Coffee): ICoffeeResponseDTO {
     const coffee = instanceToInstance({
@@ -23,6 +24,7 @@ class CoffeeMap {
       image_url,
       price,
       specifications,
+      updated_at,
       created_at,
     });
     return coffee;

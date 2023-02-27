@@ -9,6 +9,7 @@ interface ICoffeeResponseDTO {
   image: string;
   image_url(): string;
   specifications: Specification[];
+  updated_at: Date;
   created_at: Date;
 }
 
