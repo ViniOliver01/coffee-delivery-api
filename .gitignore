@@ -10,3 +10,5 @@ coverage
 .env.local
 dist
 ormconfig.json
+.vercel
+public
