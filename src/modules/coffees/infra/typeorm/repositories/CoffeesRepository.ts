@@ -87,6 +87,10 @@ class CoffeesRepository implements ICoffeesRepository {
       .where("id = :id", { id })
       .execute();
   }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
+  }
 }
 
 export { CoffeesRepository };

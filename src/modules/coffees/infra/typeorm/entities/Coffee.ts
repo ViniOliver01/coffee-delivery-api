@@ -54,6 +54,9 @@ class Coffee {
   }
 
   @CreateDateColumn()
+  updated_at: Date;
+
+  @CreateDateColumn()
   created_at: Date;
 
   constructor() {

@@ -8,6 +8,7 @@ interface ICoffeesRepository {
   listAllCoffees(): Promise<Coffee[]>;
   listAvailableCoffees(): Promise<Coffee[]>;
   updateAvailableCoffeesById(id: string, available: boolean): Promise<void>;
+  delete(id: string): Promise<void>;
 }
 
 export { ICoffeesRepository };

@@ -8,9 +8,9 @@ class CreateCoffeeController {
 
     const createCoffeeUseCase = container.resolve(CreateCoffeeUseCase);
 
-    await createCoffeeUseCase.execute({ name, description, price });
+    const coffee = await createCoffeeUseCase.execute({ name, description, price });
 
-    return response.status(201).json();
+    return response.status(201).json(coffee);
   }
 }
 
