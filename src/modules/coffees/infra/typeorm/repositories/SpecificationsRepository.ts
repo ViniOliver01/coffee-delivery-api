@@ -9,9 +9,15 @@ class SpecificationsRepository implements ISpecificationsRepository {
     this.repository = getRepository(Specification);
   }
 
-  async create(name: string): Promise<void> {
-    const specification = this.repository.create({ name });
+  async create(name: string, id?: string): Promise<void> {
+    const updated_at = new Date();
+    const specification = this.repository.create({ id, name, updated_at });
     await this.repository.save(specification);
+  }
+
+  findById(id: string): Promise<Specification> {
+    const specification = this.repository.findOne(id);
+    return specification;
   }
 
   findByIds(ids: string[]): Promise<Specification[]> {
@@ -28,6 +34,10 @@ class SpecificationsRepository implements ISpecificationsRepository {
     const specification = await this.repository.createQueryBuilder().getMany();
 
     return specification;
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 }
 

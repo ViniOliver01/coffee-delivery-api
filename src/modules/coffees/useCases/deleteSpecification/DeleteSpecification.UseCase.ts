@@ -1,19 +1,16 @@
 import { inject, injectable } from "tsyringe";
-import { Specification } from "../../infra/typeorm/entities/Specification";
 import { ISpecificationsRepository } from "../../repositories/interfaces/ISpecificationsRepository";
 
 @injectable()
-class ListSpecificationsUseCase {
+class DeleteSpecificationUseCase {
   constructor(
     @inject("SpecificationsRepository")
     private specificationsRepository: ISpecificationsRepository
   ) {}
 
-  async execute(): Promise<Specification[]> {
-    const specifications = await this.specificationsRepository.listAll();
-
-    return specifications;
+  async execute(id: string): Promise<void> {
+    await this.specificationsRepository.delete(id);
   }
 }
 
-export { ListSpecificationsUseCase };
+export { DeleteSpecificationUseCase };
