@@ -45,4 +45,4 @@ jobs:
             cd ~/app/coffee-delivery-api
             yarn
             ./node_modules/.bin/typeorm migration:run
-            pm2 restart rentx-api
+            pm2 restart coffee-delivery-api
