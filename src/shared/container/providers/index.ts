@@ -4,6 +4,7 @@ import { DayjsDateProvider } from "./DateProvider/implementations/DayjsDateProvi
 import { IMailProvider } from "./mailProvider/IMailProvider";
 import { EtherealMailProvider } from "./mailProvider/implementations/EtherealMailProvider";
 import { SESMailProvider } from "./mailProvider/implementations/SESMailProvider";
+import { ZohoMailProvider } from "./mailProvider/implementations/ZohoMailProvider";
 import { IStorageProvider } from "./StorageProvider/IStorageProvider";
 import { S3StorageProvider } from "./StorageProvider/S3StorageProvider";
 
@@ -12,6 +13,7 @@ container.registerSingleton<IDateProvider>("DayjsDateProvider", DayjsDateProvide
 const mailProvider = {
   ethereal: container.resolve(EtherealMailProvider),
   ses: container.resolve(SESMailProvider),
+  zoho: container.resolve(ZohoMailProvider),
 };
 
 container.registerInstance<IMailProvider>(
