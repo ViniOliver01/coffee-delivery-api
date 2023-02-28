@@ -14,8 +14,8 @@ class ZohoMailProvider implements IMailProvider {
       secure: true,
       port: 465,
       auth: {
-        user: "coffee-delivery@viniciusdeoliveira.dev",
-        pass: "uRNyUmqgFKmV",
+        user: process.env.ZOHO_EMAIL,
+        pass: process.env.ZOHO_PASSWORD,
       },
     });
   }
@@ -34,7 +34,7 @@ class ZohoMailProvider implements IMailProvider {
 
     await this.client.sendMail({
       to,
-      from: "Rentx <noreplay@example.com.br>", //precisa ser um email valido e verificado
+      from: "Coffee Delivery <coffee-delivery@viniciusdeoliveira.dev>", //precisa ser um email valido e verificado
       subject,
       html: templateHtml,
     });
