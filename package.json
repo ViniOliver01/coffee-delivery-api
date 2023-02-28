@@ -12,7 +12,9 @@
     "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "seed:admin:dev": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts",
+    "seed:admin:prod": "ts-node-dev dist/shared/infra/typeorm/seed/admin.js"
   },
   "dependencies": {
     "@sentry/node": "^7.31.1",

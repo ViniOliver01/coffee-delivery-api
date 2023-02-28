@@ -6,11 +6,11 @@ async function create() {
   const connection = await createConnection();
 
   const id = UUIDv4();
-  const password = await hash("admin", 8);
+  const password = await hash("admin27015", 8);
 
   await connection.query(
-    `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license) 
-    values('${id}', 'admin', 'admin@rentx.com.br', '${password}', true, 'now()', '123123123')`
+    `INSERT INTO USERS(id, name, email, email_is_verified, password, "isAdmin", created_at) 
+    values('${id}', 'admin', 'coffee.delivery@viniciusdeoliveira.dev', true, '${password}', true, 'now()')`
   );
 
   connection.close;
