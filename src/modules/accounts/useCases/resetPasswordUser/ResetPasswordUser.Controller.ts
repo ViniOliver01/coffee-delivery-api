@@ -8,7 +8,10 @@ class ResetPasswordUserController {
     const { token } = request.query;
     const { password } = request.body;
 
-    await resetPasswordUserUseCase.execute({ token: String(token), password });
+    await resetPasswordUserUseCase.execute({
+      token: String(token),
+      password,
+    });
 
     return response.status(200).json();
   }
