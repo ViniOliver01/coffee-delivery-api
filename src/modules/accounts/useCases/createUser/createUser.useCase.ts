@@ -60,15 +60,6 @@ class CreateUserUseCase {
       password: passwordHash,
     });
 
-    const templatePath = resolve(
-      __dirname,
-      "..",
-      "..",
-      "views",
-      "emails",
-      "newUserConfirmation.hbs"
-    );
-
     const token = UUIDv4();
 
     const expires_date = this.dateProvider.addHours(3);
@@ -78,6 +69,15 @@ class CreateUserUseCase {
       refresh_token: token,
       expires_date,
     });
+
+    const templatePath = resolve(
+      __dirname,
+      "..",
+      "..",
+      "views",
+      "emails",
+      "newUserConfirmation.hbs"
+    );
 
     const variables = {
       name: user.name,
