@@ -8,6 +8,7 @@ import { CreateAddressUserController } from "../../../../modules/accounts/useCas
 import { CreateUserController } from "../../../../modules/accounts/useCases/createUser/createUser.controller";
 import { ListAddressUserController } from "../../../../modules/accounts/useCases/listAddressUser/ListAddressUser.Controller";
 import { ProfileUserController } from "../../../../modules/accounts/useCases/profileUser/ProfileUser.Controller";
+import { SendConfirmMailController } from "../../../../modules/accounts/useCases/sendConfirmMail/SendConfirmMail.Controller";
 import { UpdatedAddressUserController } from "../../../../modules/accounts/useCases/updatedAddressUser/UpdatedAddressUser.Controller";
 import { UpdateUserAvatarController } from "../../../../modules/accounts/useCases/updateUserAvatar/UpdateUserAvatar.Controller";
 import { UpdateUserDataController } from "../../../../modules/accounts/useCases/updateUserData/UpdateUserData.Controller";
@@ -27,6 +28,7 @@ const createAddressUserController = new CreateAddressUserController();
 const listAddressUserController = new ListAddressUserController();
 const updatedAddressUserController = new UpdatedAddressUserController();
 const checkIsAdminController = new CheckIsAdminController();
+const sendConfirmMailController = new SendConfirmMailController();
 
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.post("/isadmin", checkIsAdminController.handle);
@@ -49,5 +51,7 @@ usersRoutes.get("/profile", ensureAuthenticated, profileUserController.handle);
 usersRoutes.post("/address", ensureAuthenticated, createAddressUserController.handle);
 usersRoutes.patch("/address", ensureAuthenticated, updatedAddressUserController.handle);
 usersRoutes.get("/address", ensureAuthenticated, listAddressUserController.handle);
+
+usersRoutes.post("/verify-email", sendConfirmMailController.handle);
 
 export { usersRoutes };
