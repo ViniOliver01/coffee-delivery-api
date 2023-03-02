@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
+import { AppError } from "./../../../../shared/errors/AppError";
 
 @injectable()
 class ConfirmMailUseCase {
@@ -12,9 +13,15 @@ class ConfirmMailUseCase {
   ) {}
 
   async execute(token: string): Promise<void> {
-    const { user_id } = await this.usersTokensRepository.findByRefreshToken(token);
+    const user_token = await this.usersTokensRepository.findByRefreshToken(token);
 
-    await this.usersRepository.verifyEmailByUserId(user_id);
+    if (!user_token) {
+      throw new AppError("Token inválido");
+    }
+
+    await this.usersRepository.verifyEmailByUserId(user_token.user_id);
+
+    await this.usersTokensRepository.deleteById(user_token.id);
   }
 }
 

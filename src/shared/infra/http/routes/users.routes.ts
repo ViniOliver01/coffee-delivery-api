@@ -33,7 +33,7 @@ const sendConfirmMailController = new SendConfirmMailController();
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.post("/isadmin", checkIsAdminController.handle);
 
-usersRoutes.get("/confirmation/:token", confirmMailController.handle);
+usersRoutes.post("/confirmation/:token", confirmMailController.handle);
 
 usersRoutes.patch(
   "/avatar",

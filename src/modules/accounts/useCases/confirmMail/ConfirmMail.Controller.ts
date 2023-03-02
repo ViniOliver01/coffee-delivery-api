@@ -9,7 +9,7 @@ class ConfirmMailController {
 
     await confirmMailUseCase.execute(token);
 
-    return response.status(200).json();
+    return response.status(200).json({ message: "Token validado" });
   }
 }
 
