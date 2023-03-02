@@ -41,7 +41,7 @@ class SendConfirmMailUseCase {
       user_id,
       refresh_token: token,
       expires_date,
-      type: "reset_token",
+      type: "confirm_email_token",
     });
 
     const templatePath = resolve(
