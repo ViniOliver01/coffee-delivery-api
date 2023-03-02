@@ -16,7 +16,7 @@ class ChangePasswordUserController {
       confirm_new_password,
     });
 
-    return response.status(201).send();
+    return response.status(201).send("Senha alterada com sucesso");
   }
 }
 

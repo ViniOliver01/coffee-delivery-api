@@ -46,13 +46,14 @@ class AuthenticateUserUseCase {
 
     // verifica se o usuário exite
     if (!user) {
-      throw new AppError("Email or password incorrect!");
+      throw new AppError("Email não encontrado", 401);
     }
+
     const passwordMatch = await compare(password, user.password);
 
     // verifica a senha
     if (!passwordMatch) {
-      throw new AppError("Email or password incorrect!");
+      throw new AppError("Email ou senha incorreto", 401);
     }
 
     const token = sign({}, secret_token, {

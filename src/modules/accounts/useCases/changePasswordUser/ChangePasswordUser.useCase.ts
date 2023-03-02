@@ -35,31 +35,31 @@ class ChangePasswordUserUseCase {
     const passwordMatch = await compare(old_password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError("Invalid password");
+      throw new AppError("Senha inválida", 401);
     }
 
     if (new_password !== confirm_new_password) {
-      throw new AppError("Passwords do not match");
+      throw new AppError("Senhas não coincidem", 401);
     }
 
     function verifyPassword(password: string) {
       //Verify password has minimum required
-      const minCharacters = password.length > 8;
+      const minCharacters = password.length >= 8;
       const letters = /[a-z]/.test(password);
       const uppercaseLetters = /[A-Z]/.test(password);
       const numbers = /[0-9]/.test(password);
 
       if (!minCharacters) {
-        throw new AppError("Password must be at least 8 characters");
+        throw new AppError("A senha deve conter ao menos 8 caracteres");
       }
       if (!letters) {
-        throw new AppError("Password must have at least one lower case letter");
+        throw new AppError("A senha deve conter ao menos 1 letra minúscula");
       }
       if (!uppercaseLetters) {
-        throw new AppError("Password must have at least one upper case letter");
+        throw new AppError("A senha deve conter ao menos 1 letra maiúscula");
       }
       if (!numbers) {
-        throw new AppError("Password must have at least one number");
+        throw new AppError("A senha deve conter ao menos 1 número");
       }
     }
 
