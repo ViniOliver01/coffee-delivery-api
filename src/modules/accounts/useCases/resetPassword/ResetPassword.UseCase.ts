@@ -11,7 +11,7 @@ interface IRequest {
 }
 
 @injectable()
-class ResetPasswordUserUseCase {
+class ResetPasswordUseCase {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
@@ -46,4 +46,4 @@ class ResetPasswordUserUseCase {
   }
 }
 
-export { ResetPasswordUserUseCase };
+export { ResetPasswordUseCase };

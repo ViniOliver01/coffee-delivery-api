@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { ResetPasswordUserUseCase } from "./ResetPasswordUser.UseCase";
+import { ResetPasswordUseCase } from "./ResetPassword.UseCase";
 
-class ResetPasswordUserController {
+class ResetPasswordController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const resetPasswordUserUseCase = container.resolve(ResetPasswordUserUseCase);
+    const resetPasswordUseCase = container.resolve(ResetPasswordUseCase);
     const { token } = request.query;
     const { password } = request.body;
 
-    await resetPasswordUserUseCase.execute({
+    await resetPasswordUseCase.execute({
       token: String(token),
       password,
     });
@@ -17,4 +17,4 @@ class ResetPasswordUserController {
   }
 }
 
-export { ResetPasswordUserController };
+export { ResetPasswordController };
