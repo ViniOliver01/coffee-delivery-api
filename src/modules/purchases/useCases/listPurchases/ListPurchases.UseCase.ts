@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { ICoffeesRepository } from "../../../coffees/repositories/interfaces/ICoffeesRepository";
 import { Purchase } from "../../infra/typeorm/entities/Purchase";
 import { IPurchasesRepository } from "../../repositories/interfaces/IPurchasesRepository";
+import { AppError } from "./../../../../shared/errors/AppError";
 
 @injectable()
 class ListPurchasesUseCase {
@@ -14,14 +15,17 @@ class ListPurchasesUseCase {
 
   async execute(user_id: string): Promise<Purchase[]> {
     const purchases = await this.purchasesRepository.listByUserId(user_id);
-    console.log("🚀 / ListPurchasesUseCase / execute / purchases", purchases[0].cart);
 
-    await Promise.all(
-      purchases[0].cart.map(async (coffee) => {
-        const data = await this.coffeesRepository.findById(coffee.coffee_id);
-        coffee.img_url = data.image_url();
-      })
-    );
+    if (purchases.length > 0) {
+      await Promise.all(
+        purchases[0].cart.map(async (coffee) => {
+          const data = await this.coffeesRepository.findById(coffee.coffee_id);
+          coffee.img_url = data.image_url();
+        })
+      );
+    } else {
+      throw new AppError("Nenhuma compra encontrada");
+    }
 
     return purchases;
   }
