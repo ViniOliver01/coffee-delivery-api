@@ -5,6 +5,7 @@ import { IDateProvider } from "../../../../shared/container/providers/DateProvid
 import { IMailProvider } from "../../../../shared/container/providers/mailProvider/IMailProvider";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
+import { AppError } from "./../../../../shared/errors/AppError";
 
 interface IRequest {
   name: string;
@@ -31,7 +32,10 @@ class SendConfirmMailUseCase {
       user_id,
       "reset_token"
     );
-    console.log("🚀 / SendConfirmMailUseCase / execute / reset_token:", reset_token);
+
+    if (!reset_token) {
+      throw new AppError("Token inválido");
+    }
 
     const token = UUIDv4();
 
