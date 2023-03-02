@@ -11,6 +11,7 @@ import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepositor
 interface IRequest {
   email: string;
   password: string;
+  remember: boolean;
 }
 
 interface IResponse {
@@ -34,7 +35,7 @@ class AuthenticateUserUseCase {
     private DateProvider: IDateProvider
   ) {}
 
-  async execute({ email, password }: IRequest): Promise<IResponse> {
+  async execute({ email, password, remember = false }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);
     const {
       expire_in_refresh_token,
@@ -42,6 +43,8 @@ class AuthenticateUserUseCase {
       secret_refresh_token,
       secret_token,
       expire_refresh_token_days,
+      expire_in_refresh_token_remember,
+      expire_refresh_token_days_remember,
     } = auth;
 
     // verifica se o usuário exite
@@ -63,11 +66,11 @@ class AuthenticateUserUseCase {
 
     const refresh_token = sign({ email }, secret_refresh_token, {
       subject: user.id,
-      expiresIn: expire_in_refresh_token,
+      expiresIn: remember ? expire_in_refresh_token_remember : expire_in_refresh_token,
     });
 
     const refresh_token_expires_date = this.DateProvider.addDays(
-      expire_refresh_token_days
+      remember ? expire_refresh_token_days_remember : expire_refresh_token_days
     );
 
     await this.usersTokensRepository.create({
