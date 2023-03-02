@@ -3,10 +3,8 @@ import { ICoffeesRepository } from "../../repositories/interfaces/ICoffeesReposi
 import { ISpecificationsRepository } from "../../repositories/interfaces/ISpecificationsRepository";
 
 interface IRequest {
-  coffees: {
-    coffee_id: string;
-    specifications_ids: string[];
-  }[];
+  coffee_id: string;
+  specifications_ids: string[];
 }
 
 @injectable()
@@ -18,26 +16,24 @@ class CreateCoffeeSpecificationUseCase {
     private specificationsRepository: ISpecificationsRepository
   ) {}
 
-  async execute({ coffees }: IRequest): Promise<void> {
-    coffees.map(async (data) => {
-      const coffee = await this.coffeesRepository.findById(data.coffee_id);
+  async execute({ coffee_id, specifications_ids }: IRequest): Promise<void> {
+    const coffee = await this.coffeesRepository.findById(coffee_id);
 
-      // if (!coffee) {
-      //   throw new AppError("Coffee does not exists");
-      // }
+    // if (!coffee) {
+    //   throw new AppError("Coffee does not exists");
+    // }
 
-      const specifications = await this.specificationsRepository.findByIds(
-        data.specifications_ids
-      );
+    const specifications = await this.specificationsRepository.findByIds(
+      specifications_ids
+    );
 
-      // if (specifications.length === 0) {
-      //   throw new AppError("Specifications does not exists");
-      // }
+    // if (specifications.length === 0) {
+    //   throw new AppError("Specifications does not exists");
+    // }
 
-      coffee.specifications = specifications;
+    coffee.specifications = specifications;
 
-      await this.coffeesRepository.create(coffee);
-    });
+    await this.coffeesRepository.create(coffee);
   }
 }
 

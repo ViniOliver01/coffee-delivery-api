@@ -3,10 +3,8 @@ import { container } from "tsyringe";
 import { CreateCoffeeSpecificationUseCase } from "./CreateCoffeeSpecification.UseCase";
 
 interface IRequest {
-  coffees: {
-    coffee_id: string;
-    specifications_ids: string[];
-  }[];
+  coffee_id: string;
+  specifications_ids: string[];
 }
 
 class CreateCoffeeSpecificationController {
