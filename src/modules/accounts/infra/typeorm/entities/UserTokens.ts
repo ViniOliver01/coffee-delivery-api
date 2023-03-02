@@ -18,6 +18,9 @@ class UserTokens {
   refresh_token: string;
 
   @Column()
+  type: string;
+
+  @Column()
   user_id: string;
 
   @ManyToOne(() => User)

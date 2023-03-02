@@ -68,6 +68,7 @@ class CreateUserUseCase {
       user_id: user.id,
       refresh_token: token,
       expires_date,
+      type: "reset_token",
     });
 
     const templatePath = resolve(
