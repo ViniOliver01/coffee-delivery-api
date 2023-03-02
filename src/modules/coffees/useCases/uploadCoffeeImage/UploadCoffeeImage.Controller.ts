@@ -11,7 +11,7 @@ class UploadCoffeeImageController {
 
     await uploadCoffeeImageUseCase.execute({ coffee_id, image_file });
 
-    return response.status(204).send();
+    return response.status(201).json({ message: "Imagem carregada com sucesso" });
   }
 }
 

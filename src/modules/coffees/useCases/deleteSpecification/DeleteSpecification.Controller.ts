@@ -10,7 +10,7 @@ class DeleteSpecificationController {
 
     await deleteSpecificationUseCase.execute(id);
 
-    return response.status(200).json();
+    return response.status(204).json({ message: "Especificação excluída com sucesso" });
   }
 }
 

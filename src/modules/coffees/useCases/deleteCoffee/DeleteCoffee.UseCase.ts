@@ -13,7 +13,7 @@ class DeleteCoffeeUseCase {
     const coffee = await this.coffeesRepository.findById(id);
 
     if (!coffee) {
-      throw new AppError("Coffee not found");
+      throw new AppError("Café não encontrado");
     }
 
     coffee.specifications = []; // remove all specs relationships before delete coffee

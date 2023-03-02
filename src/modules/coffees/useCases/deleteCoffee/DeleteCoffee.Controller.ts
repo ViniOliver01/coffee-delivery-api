@@ -10,7 +10,7 @@ class DeleteCoffeeController {
 
     await deleteCoffeeUseCase.execute(id);
 
-    return response.status(200).json();
+    return response.status(204).json({ message: "Café excluído com sucesso" });
   }
 }
 

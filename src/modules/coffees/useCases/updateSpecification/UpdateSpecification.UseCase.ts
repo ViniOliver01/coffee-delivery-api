@@ -16,19 +16,19 @@ class UpdateSpecificationUseCase {
     const specification = await this.specificationsRepository.findByName(name);
 
     if (!specificationId) {
-      throw new AppError("Specification not exists");
+      throw new AppError("Especificação não existe");
     }
 
     if (specificationId && specification && specification.id !== specificationId.id) {
-      throw new AppError("Specification already exists");
+      throw new AppError("Especificação já existe");
     }
 
     if (!specificationId) {
-      throw new AppError("Specification not exists");
+      throw new AppError("Especificação não existe");
     }
 
     if (specificationId && specification && specificationId.id === specification.id) {
-      throw new AppError("Specification not changed");
+      throw new AppError("Especificação não foi alterada");
     }
     await this.specificationsRepository.create(name, id);
   }

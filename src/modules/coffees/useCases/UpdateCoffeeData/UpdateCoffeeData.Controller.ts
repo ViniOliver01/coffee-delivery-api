@@ -10,7 +10,7 @@ class UpdateCoffeeDataController {
 
     await updateCoffeeDataUseCase.execute({ id, name, description, price, available });
 
-    return response.status(200).json();
+    return response.status(200).json({ message: "Café atualizado com sucesso" });
   }
 }
 

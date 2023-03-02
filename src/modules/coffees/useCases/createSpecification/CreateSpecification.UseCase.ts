@@ -15,7 +15,7 @@ class CreateSpecificationUseCase {
     const specification = await this.specificationsRepository.findByName(name);
 
     if (specification) {
-      throw new AppError("Specification already exists");
+      throw new AppError("Especificação já existe");
     }
 
     await this.specificationsRepository.create(name);

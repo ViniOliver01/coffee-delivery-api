@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IStorageProvider } from "../../../../shared/container/providers/StorageProvider/IStorageProvider";
 import { ICoffeesRepository } from "../../repositories/interfaces/ICoffeesRepository";
+import { AppError } from "./../../../../shared/errors/AppError";
 
 interface IRequest {
   coffee_id: string;
@@ -18,6 +19,10 @@ class UploadCoffeeImageUseCase {
 
   async execute({ coffee_id, image_file }: IRequest): Promise<void> {
     const coffee = await this.coffeesRepository.findById(coffee_id);
+
+    if (!coffee) {
+      throw new AppError("Café não encontrado");
+    }
 
     if (coffee.image) {
       await this.storageProvider.delete(coffee.image, "coffee");

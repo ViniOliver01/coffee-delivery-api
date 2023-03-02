@@ -8,7 +8,7 @@ class ListCoffeesController {
 
     const coffees = await listCoffeesUseCase.execute();
 
-    return response.status(201).json(coffees);
+    return response.status(200).json(coffees);
   }
 }
 
