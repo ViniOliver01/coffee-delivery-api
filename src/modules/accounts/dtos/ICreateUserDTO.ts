@@ -5,6 +5,7 @@ interface ICreateUserDTO {
   id?: string;
   avatar?: string;
   phone?: string;
+  email_is_verified?: boolean;
 }
 
 export { ICreateUserDTO };
