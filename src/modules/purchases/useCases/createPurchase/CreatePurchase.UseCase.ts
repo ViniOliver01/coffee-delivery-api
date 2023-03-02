@@ -3,12 +3,13 @@ import { ICoffeesRepository } from "../../../coffees/repositories/interfaces/ICo
 import { IPurchaseCart } from "../../dtos/IPurchaseCart";
 import { Purchase } from "../../infra/typeorm/entities/Purchase";
 import { IPurchasesRepository } from "../../repositories/interfaces/IPurchasesRepository";
+import { AppError } from "./../../../../shared/errors/AppError";
 
 interface IRequest {
   user_id: string;
   address_id: string;
   delivery_value: number;
-  payment_type;
+  payment_type: string;
   cart: IPurchaseCart[];
 }
 
@@ -28,12 +29,29 @@ class CreatePurchaseUseCase {
     payment_type,
     cart,
   }: IRequest): Promise<Purchase> {
+    if (cart.length === 0) {
+      throw new AppError("Carrinho vazio");
+    }
+
+    if (!user_id) {
+      throw new AppError("Nenhum usuário encontrado");
+    }
+
+    if (!address_id) {
+      throw new AppError("Nenhum endereço selecionado");
+    }
+
+    if (!payment_type) {
+      throw new AppError("Nenhum tipo de pagamento selecionado");
+    }
+
     await Promise.all(
       cart.map(async (coffee) => {
         const data = await this.coffeesRepository.findById(coffee.coffee_id);
         (coffee.name = data.name), (coffee.price = data.price);
       })
     );
+
     const products_value = cart.reduce((total, product) => {
       return total + product.price * product.quantity;
     }, 0);
