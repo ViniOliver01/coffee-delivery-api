@@ -10,9 +10,9 @@ class ListAddressUserUseCase {
   ) {}
 
   async execute(user_id: string): Promise<UserAddress[]> {
-    const response = await this.usersAddressRepository.listAddressByUserId(user_id);
+    const address_list = await this.usersAddressRepository.listAddressByUserId(user_id);
 
-    return response;
+    return address_list;
   }
 }
 
