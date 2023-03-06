@@ -27,9 +27,6 @@ class UpdateSpecificationUseCase {
       throw new AppError("Especificação não existe");
     }
 
-    if (specificationId && specification && specificationId.id === specification.id) {
-      throw new AppError("Especificação não foi alterada");
-    }
     await this.specificationsRepository.create(name, id);
   }
 }
