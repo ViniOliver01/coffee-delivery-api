@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 import { ICoffeesRepository } from "../../../coffees/repositories/interfaces/ICoffeesRepository";
 import { Purchase } from "../../infra/typeorm/entities/Purchase";
 import { IPurchasesRepository } from "../../repositories/interfaces/IPurchasesRepository";
-import { AppError } from "./../../../../shared/errors/AppError";
 
 @injectable()
 class ListPurchasesUseCase {
@@ -23,8 +22,6 @@ class ListPurchasesUseCase {
           coffee.img_url = data.image_url();
         })
       );
-    } else {
-      throw new AppError("Nenhuma compra encontrada");
     }
 
     return purchases;
