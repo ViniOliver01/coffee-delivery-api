@@ -6,6 +6,7 @@ import { CheckIsAdminController } from "../../../../modules/accounts/useCases/ch
 import { ConfirmMailController } from "../../../../modules/accounts/useCases/confirmMail/ConfirmMail.Controller";
 import { CreateAddressUserController } from "../../../../modules/accounts/useCases/createAddressUser/CreateAddressUser.Controller";
 import { CreateUserController } from "../../../../modules/accounts/useCases/createUser/createUser.controller";
+import { DeleteAddressUserController } from "../../../../modules/accounts/useCases/deleteAddressUser/DeleteAddressUser.Controller";
 import { ListAddressUserController } from "../../../../modules/accounts/useCases/listAddressUser/ListAddressUser.Controller";
 import { ProfileUserController } from "../../../../modules/accounts/useCases/profileUser/ProfileUser.Controller";
 import { SendConfirmMailController } from "../../../../modules/accounts/useCases/sendConfirmMail/SendConfirmMail.Controller";
@@ -29,6 +30,7 @@ const listAddressUserController = new ListAddressUserController();
 const updatedAddressUserController = new UpdatedAddressUserController();
 const checkIsAdminController = new CheckIsAdminController();
 const sendConfirmMailController = new SendConfirmMailController();
+const deleteAddressUserController = new DeleteAddressUserController();
 
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.post("/isadmin", checkIsAdminController.handle);
@@ -51,6 +53,11 @@ usersRoutes.get("/profile", ensureAuthenticated, profileUserController.handle);
 usersRoutes.post("/address", ensureAuthenticated, createAddressUserController.handle);
 usersRoutes.patch("/address", ensureAuthenticated, updatedAddressUserController.handle);
 usersRoutes.get("/address", ensureAuthenticated, listAddressUserController.handle);
+usersRoutes.post(
+  "/delete-address",
+  ensureAuthenticated,
+  deleteAddressUserController.handle
+);
 
 usersRoutes.post("/verify-email", sendConfirmMailController.handle);
 
