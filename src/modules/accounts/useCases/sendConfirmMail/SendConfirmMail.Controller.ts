@@ -9,7 +9,7 @@ class SendConfirmMailController {
 
     await sendConfirmMailUseCase.execute({ name, email });
 
-    return response.status(200).json();
+    return response.status(200).json({ message: "Email enviado" });
   }
 }
 

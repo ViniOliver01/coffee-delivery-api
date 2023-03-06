@@ -16,7 +16,10 @@ interface IUsersTokensRepository {
   deleteById(id: string): Promise<void>;
 
   findByRefreshToken(refresh_token: string): Promise<UserTokens>;
-  findByType(user_id: string, type: "reset_token" | "auth_token"): Promise<UserTokens>;
+  findByType(
+    user_id: string,
+    type: "reset_token" | "auth_token" | "confirm_email_token"
+  ): Promise<UserTokens>;
 }
 
 export { IUsersTokensRepository };

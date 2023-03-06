@@ -5,7 +5,6 @@ import { IDateProvider } from "../../../../shared/container/providers/DateProvid
 import { IMailProvider } from "../../../../shared/container/providers/mailProvider/IMailProvider";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
-import { AppError } from "./../../../../shared/errors/AppError";
 
 interface IRequest {
   name: string;
@@ -30,11 +29,11 @@ class SendConfirmMailUseCase {
 
     const reset_token = await this.usersTokensRepository.findByType(
       user_id,
-      "reset_token"
+      "confirm_email_token"
     );
 
-    if (!reset_token) {
-      throw new AppError("Token inválido");
+    if (reset_token) {
+      await this.usersTokensRepository.deleteById(reset_token.id);
     }
 
     const token = UUIDv4();
