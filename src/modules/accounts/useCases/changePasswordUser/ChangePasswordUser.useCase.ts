@@ -35,11 +35,11 @@ class ChangePasswordUserUseCase {
     const passwordMatch = await compare(old_password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError("Senha inválida", 401);
+      throw new AppError("Senha inválida", 400);
     }
 
     if (new_password !== confirm_new_password) {
-      throw new AppError("Senhas não coincidem", 401);
+      throw new AppError("Senhas não coincidem", 400);
     }
 
     function verifyPassword(password: string) {
