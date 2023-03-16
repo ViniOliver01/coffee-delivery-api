@@ -16,7 +16,7 @@
     "seed:admin:dev": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts",
     "seed:admin:prod": "ts-node-dev dist/shared/infra/typeorm/seed/admin.js",
     "server:cleanTokens:dev": "ts-node-dev src/shared/infra/typeorm/server/cleanTokens.ts",
-    "server:cleanTokens:prod": "ts-node-dev src/shared/infra/typeorm/server/cleanTokens.js"
+    "server:cleanTokens:prod": "ts-node-dev dist/shared/infra/typeorm/server/cleanTokens.js"
   },
   "dependencies": {
     "@sentry/node": "^7.31.1",
