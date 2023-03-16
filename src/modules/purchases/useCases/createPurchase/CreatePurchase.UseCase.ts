@@ -48,7 +48,9 @@ class CreatePurchaseUseCase {
     await Promise.all(
       cart.map(async (coffee) => {
         const data = await this.coffeesRepository.findById(coffee.coffee_id);
-        (coffee.name = data.name), (coffee.price = data.price);
+        coffee.name = data.name;
+        coffee.price = data.price;
+        coffee.img_url = data.image_url();
       })
     );
 
@@ -67,6 +69,7 @@ class CreatePurchaseUseCase {
       payment_type,
       cart,
     });
+    console.log("🚀 / CreatePurchaseUseCase / cart:", cart);
 
     return purchase;
   }
