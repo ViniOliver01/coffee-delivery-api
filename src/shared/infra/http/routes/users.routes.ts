@@ -33,7 +33,7 @@ const sendConfirmMailController = new SendConfirmMailController();
 const deleteAddressUserController = new DeleteAddressUserController();
 
 usersRoutes.post("/", createUserController.handle);
-usersRoutes.post("/isadmin", checkIsAdminController.handle);
+usersRoutes.post("/isadmin", ensureAuthenticated, checkIsAdminController.handle);
 
 usersRoutes.post("/confirmation/:token", confirmMailController.handle);
 

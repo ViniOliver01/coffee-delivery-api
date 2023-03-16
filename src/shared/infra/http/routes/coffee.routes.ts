@@ -8,6 +8,8 @@ import { ImportCoffeesController } from "../../../../modules/coffees/useCases/im
 import { ListCoffeesController } from "../../../../modules/coffees/useCases/listCoffees/ListCoffees.Controller";
 import { UpdateCoffeeDataController } from "../../../../modules/coffees/useCases/UpdateCoffeeData/UpdateCoffeeData.Controller";
 import { UploadCoffeeImageController } from "../../../../modules/coffees/useCases/uploadCoffeeImage/UploadCoffeeImage.Controller";
+import { ensureAdmin } from "../middlewares/ensureAdmin";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const coffeeRoutes = Router();
 
@@ -30,23 +32,40 @@ coffeeRoutes.post("/", createCoffeeController.handle);
 coffeeRoutes.post(
   "/import",
   upload.single("file"),
-  // ensureAuthenticated,
-  // ensureAdmin,
+  ensureAuthenticated,
+  ensureAdmin,
   importCoffeesController.handle
 );
 
 coffeeRoutes.patch(
   "/image/:id",
   uploadAvatar.single("coffee"),
+  ensureAuthenticated,
+  ensureAdmin,
   uploadCoffeeImageController.handle
 );
 
-coffeeRoutes.patch("/update", updateCoffeeDataController.handle);
+coffeeRoutes.patch(
+  "/update",
+  ensureAuthenticated,
+  ensureAdmin,
+  updateCoffeeDataController.handle
+);
 
-coffeeRoutes.post("/specifications", createCoffeeSpecificationController.handle);
+coffeeRoutes.post(
+  "/specifications",
+  ensureAuthenticated,
+  ensureAdmin,
+  createCoffeeSpecificationController.handle
+);
 
 coffeeRoutes.get("/", listCoffeesController.handle);
 
-coffeeRoutes.delete("/:id", deleteCoffeeController.handle);
+coffeeRoutes.delete(
+  "/:id",
+  ensureAuthenticated,
+  ensureAdmin,
+  deleteCoffeeController.handle
+);
 
 export { coffeeRoutes };
