@@ -23,13 +23,13 @@ Este é um projeto ao estilo e-commerce o qual tem por fim por em pratica a util
 
 Para clonar e executar este aplicativo, você precisará de [Git](https://git-scm.com), [NodeJs](https://nodejs.org/en/), [Docker](https://www.docker.com) e [Docker Compose](https://docs.docker.com/compose/install/)  Instalado em seu computador.
 
-## 🌀 Clonando o repositório
+### 🌀 Clonando o repositório
 ```
 # Clone este repositório
 $ git clone https://github.com/ViniOliver01/coffee-delivery-api
 
 ```
-## ▶️ Rodando a Aplicação
+### ▶️ Rodando a Aplicação
 
 ```
 # Instale as dependências
