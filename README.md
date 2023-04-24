@@ -40,7 +40,7 @@ $ docker-compose up -d
 # Rodando as migrations do typeorm
 $ yarn typeorm migration:run ou npm run typeorm migration:run
 
-# Execute o expo
+# Execute o aplicativo
 $ yarn dev ou npm run dev
 ```
 ## 🧑 Autor
