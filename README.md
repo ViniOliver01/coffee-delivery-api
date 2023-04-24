@@ -27,7 +27,6 @@ Para clonar e executar este aplicativo, você precisará de [Git](https://git-sc
 ```
 # Clone este repositório
 $ git clone https://github.com/ViniOliver01/coffee-delivery-api
-
 ```
 ### ▶️ Rodando a Aplicação
 
@@ -43,7 +42,6 @@ $ yarn typeorm migration:run ou npm run typeorm migration:run
 
 # Execute o expo
 $ yarn dev ou npm run dev
-
 ```
 ## 🧑 Autor
 
