@@ -31,7 +31,7 @@ $ git clone https://github.com/ViniOliver01/coffee-delivery-api
 ### ▶️ Rodando a Aplicação
 
 ```
-# Instale as dependências
+# Instalando as dependências
 $ yarn install ou npm install
 
 # Montando o banco de dados pelo docker-compose
@@ -40,7 +40,7 @@ $ docker-compose up -d
 # Rodando as migrations do typeorm
 $ yarn typeorm migration:run ou npm run typeorm migration:run
 
-# Execute o aplicativo
+# Executando a aplicação
 $ yarn dev ou npm run dev
 ```
 ## 🧑 Autor
